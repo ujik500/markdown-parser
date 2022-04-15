@@ -21,11 +21,19 @@ public class MarkdownParse {
                 openParen == -1 || closeParen == -1) {
                     break;
                 }
+
             //skip over the image links
-            if (currentIndex != 0 && markdown.charAt(openBracket - 1) == '!') {
+            if (openBracket != 0 && markdown.charAt(openBracket - 1) == '!') {
                 currentIndex = closeParen + 1;
                 continue;
             }
+
+            //skip over brackets and parentheses that do not directly touch
+            if (closeBracket != openParen -1) {
+                currentIndex = closeParen + 1;
+                continue;
+            }
+
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
