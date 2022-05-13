@@ -41,7 +41,6 @@ public class MarkdownParse {
         return toReturn;
     }
 
-// change for the sake of changing
     public static void main(String[] args) throws IOException {
         MarkdownParse parser = new MarkdownParse();
         Path fileName = Path.of(args[0]);
