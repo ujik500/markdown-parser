@@ -29,7 +29,7 @@ public class MarkdownParse {
             }
 
             //skip over brackets and parentheses that do not directly touch
-            if (closeBracket != openParen -1) {
+            if (closeBracket != openParen - 1) {
                 currentIndex = closeParen + 1;
                 continue;
             }
