@@ -72,6 +72,31 @@ public class MarkdownParseTest {
     public void testFourthBreaker() {
         assertEquals(links4, parser.getLinks(content4));
     }
+
+    @Test
+    public void testSnippetOne() throws IOException {
+        ArrayList<String> links5 = new ArrayList<String>();
+        links5.add("`google.com");
+        links5.add("google.com");
+        links5.add("ucsd.edu");
+        assertEquals(links5, parser.getLinks(Files.readString(Path.of("snippet1.md"))));
+    }
+
+    @Test
+    public void testSnippetTwo() throws IOException {
+        ArrayList<String> links6 = new ArrayList<String>();
+        links6.add("a.com");
+        links6.add("a.com(())");
+        links6.add("example.com");
+        assertEquals(links6, parser.getLinks(Files.readString(Path.of("snippet2.md"))));
+    }
+
+    @Test
+    public void testSnippetThree() throws IOException {
+        ArrayList<String> links7 = new ArrayList<String>();
+        links7.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+        assertEquals(links7, parser.getLinks(Files.readString(Path.of("snippet3.md"))));
+    }
 }
 
 // javac -cp ".;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar" MarkdownParseTest.java
